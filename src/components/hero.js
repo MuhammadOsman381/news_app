@@ -3,36 +3,28 @@ import { useState,useEffect } from "react";
 
 function Hero(){
     
-    const [Data,setData] = useState('1');
-    const [image,setImage] = useState(null);
-    const [title,setTitle] = useState(null);
-    const [content,setContent] = useState(null);
-    const [indexno,setIndex] = useState(0);
+    const [Data,setData] = useState([]);
+    // const [image,setImage] = useState(null);
+    // const [title,setTitle] = useState(null);
+    // const [content,setContent] = useState(null);
+    // const [indexno,setIndex] = useState(0);
     // let API_KEY ='18c670ea70fe6b5a81213e702cccaf8b'
-    let API_URL = `https://newsapi.org/v2/top-headlines?country=us&apiKey=18c670ea70fe4b5a81213e702cccaf8b`
+    let API_KEY = '18c670ea70fe4b5a81213e702cccaf8b'
+    let API_URL = `https://newsapi.org/v2/everything?q=bitcoin&apiKey=${API_KEY}`
     // console.log(API_URL)
 
     useEffect(()=>{
 
-        // const parent = document.querySelector('.parent');
-        // const child = document.querySelector('.child');
-        // var articleDiv = document.createElement('div');
-        // articleDiv.classList.add('parent');
-        //  parent.appendChild(child);
-
-    },[])
-
-    window.onload = function() {
         fetch(API_URL)
         .then(response => {
             return response.json();
       })
         .then(data=>{
-            setData(data.articles)
+            setData(data)
             console.log(data)
             data.articles.forEach(function(element, index) {
                 var parent = document.querySelector('.parent');
-                var he1 = document.querySelector('.he1');
+               
 
                 var childelem = document.createElement('div');
                 childelem.className = 'child';
@@ -67,17 +59,25 @@ function Hero(){
         .catch(error => 
             console.error('Error fetching news data:', error
             ));
-    };
+
+    },[])
+
+    // window.onload = function() {
+       
+    // };
 
  
 
     return(
         <div>
-            <div className='grandparent  w-[100vw] h-auto flex flex-row  justify-center gap-[5vw] '>
+            <div className='grandparent  w-[100vw] h-auto flex flex-col items-center justify-center  justify-center gap-[0vw] '>
+                <div className=' w-[90vw] mt-[1.5vw]'>
+                <h1 className='font-bold text-[2.5vw]'>BitCoin-News</h1>
+                </div>
                 <div className='parent 1st_col w-auto h-auto gap-[1vw]'>
                 
                     <div className='child' id='child' >
-                        <div className='con'>
+                        {/* <div className='con'> */}
                         <img className='image' id='image' />
                         <div className='data'>
 
@@ -87,7 +87,7 @@ function Hero(){
                         
                         <span></span>
                         </div>
-                    </div>
+                    {/* </div> */}
                     </div>
                 </div>
             </div>

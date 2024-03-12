@@ -19,8 +19,8 @@ body {
   justify-content: center;
   gap: 1vw;
   padding: 2vw;
-  margin-top: 3vw;
-  box-shadow: 20px 20px 20px grey;
+  margin-top: 1.5vw;
+  box-shadow: 15px 15px 15px grey;
   /* From https://css.glass */
 background: rgba(5, 4, 4, 0.24);
 border-radius: 10px;
@@ -57,6 +57,7 @@ backdrop-filter: blur(11.9px);
 
 @media (max-width: 600px) {
   
+
   .child{
     height: auto;
     display: flex;
@@ -65,13 +66,14 @@ backdrop-filter: blur(11.9px);
     padding: 3vh;
     gap: 1vh;
     box-shadow: 10px 10px 10px grey;
+    margin-top: 3vh;
   }
   .image{
     width: 30vh;
     height: 20vh;
   }
   .main{
-    height: 17vw;
+    height: 16vw;
     width: 100vw;
   }
   .title{
