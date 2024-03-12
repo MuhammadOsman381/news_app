@@ -1,38 +1,88 @@
-.App {
-  text-align: center;
+body {
+  margin: 0px;
+  padding: 0px;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.title{
+  font-weight: 700;
+  font-size: 1.7vw;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.child{
+  /* border: 2px solid black; */
+  width: 70vw;
+  height: 20vw;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: center;
+  gap: 1vw;
+  padding: 2vw;
+  margin-top: 3vw;
+  box-shadow: 20px 20px 20px grey;
+  /* From https://css.glass */
+background: rgba(5, 4, 4, 0.24);
+border-radius: 10px;
+/* box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); */
+backdrop-filter: blur(11.9px);
+-webkit-backdrop-filter: blur(11.9px);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.image{
+  width: 22vw;
+  height: 35vh;
+  border-radius: 5px;
+  object-fit: fill;
+}
+
+.data{
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  height: 15vw;
+  gap: 1vw;
+  width: auto;
 }
 
-.App-link {
-  color: #61dafb;
+.content{
+  font-size: 1.2vw;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.con{
+  display: flex;
+  flex-direction: row;
+}
+
+@media (max-width: 600px) {
+  
+  .child{
+    height: auto;
+    display: flex;
+    flex-direction: column-reverse;
+    width: 80vw;
+    padding: 3vh;
+    gap: 1vh;
+    box-shadow: 10px 10px 10px grey;
   }
-  to {
-    transform: rotate(360deg);
+  .image{
+    width: 30vh;
+    height: 20vh;
+  }
+  .main{
+    height: 17vw;
+    width: 100vw;
+  }
+  .title{
+    font-size: 1.6vh;
+  }
+  .content{
+    font-size: 1.2vh;
+  }
+  .data{
+    /* border: 1px solid black; */
+    height: auto;
+    width: 30vh;
   }
 }
