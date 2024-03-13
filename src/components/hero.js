@@ -3,68 +3,146 @@ import { useState,useEffect } from "react";
 
 function Hero(){
     
-    const [Data,setData] = useState([]);
+    const [datafetched,setDataFetched] = useState('');
     // const [image,setImage] = useState(null);
     // const [title,setTitle] = useState(null);
     // const [content,setContent] = useState(null);
     // const [indexno,setIndex] = useState(0);
     // let API_KEY ='18c670ea70fe6b5a81213e702cccaf8b'
-    let API_KEY = '18c670ea70fe4b5a81213e702cccaf8b'
-    let API_URL = `https://newsapi.org/v2/everything?q=bitcoin&apiKey=${API_KEY}`
+    // let API_KEY = '6d60cc230fe5424cb955d5eafb128831'
+    // let API_URL = `https://newsapi.org/v2/everything?q=bitcoin&apiKey=${API_KEY}`
     // console.log(API_URL)
+   
+    // useEffect(()=>{
 
-    useEffect(()=>{
+    //     fetch(`https://newsapi.org/v2/everything?q=bitcoin&apiKey=${key.api}`)
+    //     .then(response => {
+    //         if (!response.ok) {
+    //           throw new Error('Network response was not ok');
+    //         }
+    //         return response.json();
+    //       })
+    //     .then(data=>{
+    //         setDataFetched(data)
 
-        fetch(API_URL)
-        .then(response => {
-            return response.json();
-      })
-        .then(data=>{
-            setData(data)
-            console.log(data)
-            data.articles.forEach(function(element, index) {
-                var parent = document.querySelector('.parent');
+    //         const array = (data.articles).map((element)=>{
+    //             var parent = document.querySelector('.parent');
                
-
-                var childelem = document.createElement('div');
-                childelem.className = 'child';
-                parent.appendChild(childelem);
-
-                var data = document.createElement('div');
-                data.className = 'data';
-                childelem.appendChild(data);
-                
-                var image = document.createElement('img');
-                image.className = 'image';
-                image.src = element.urlToImage; 
-                childelem.appendChild(image);
-
-                var title = document.createElement('h1');
-                title.className ='title'
-                title.textContent = element.title
-                data.appendChild(title);
-
-                var content = document.createElement('p');
-                content.className = 'content'
-                content.textContent = element.content;
-                data.appendChild(content);
-
-              
+    //             var childelem = document.createElement('div');
+    //             childelem.className = 'child';
+    //             parent.appendChild(childelem);
     
-            });
-            
-            document.querySelector('.child').style.display ='none';
-            
-        })
-        .catch(error => 
-            console.error('Error fetching news data:', error
-            ));
+    //             var data = document.createElement('div');
+    //             data.className = 'data';
+    //             childelem.appendChild(data);
+                
+    //             var image = document.createElement('img');
+    //             image.className = 'image';
+    //             image.src = element.urlToImage; 
+    //             childelem.appendChild(image);
+    
+    //             var title = document.createElement('h1');
+    //             title.className ='title'
+    //             title.textContent = element.title
+    //             data.appendChild(title);
+    
+    //             var content = document.createElement('p');
+    //             content.className = 'content'
+    //             content.textContent = element.content;
+    //             data.appendChild(content);
 
+    //             // console.log(element)
+    //         })
+    //         // datafetched.articles.forEach(function(element, index) {
+    //         //     var parent = document.querySelector('.parent');
+               
+    
+    //         //     var childelem = document.createElement('div');
+    //         //     childelem.className = 'child';
+    //         //     parent.appendChild(childelem);
+    
+    //         //     var data = document.createElement('div');
+    //         //     data.className = 'data';
+    //         //     childelem.appendChild(data);
+                
+    //         //     var image = document.createElement('img');
+    //         //     image.className = 'image';
+    //         //     image.src = element.urlToImage; 
+    //         //     childelem.appendChild(image);
+    
+    //         //     var title = document.createElement('h1');
+    //         //     title.className ='title'
+    //         //     title.textContent = element.title
+    //         //     data.appendChild(title);
+    
+    //         //     var content = document.createElement('p');
+    //         //     content.className = 'content'
+    //         //     content.textContent = element.content;
+    //         //     data.appendChild(content);
+    //         // })
+    //         console.log(datafetched);
+    //         // console.log(Data)
+    //         document.querySelector('.child').style.display ='none';
+            
+    //     })
+    //     .catch(error => 
+    //         console.error('Error fetching news data:', error
+    //         ));
+
+    // },[])
+    
+    const apiKey = '6d60cc230fe5424cb955d5eafb128831'
+    useEffect(()=>{
+        async function fetchNews() {
+            const url = 'https://newsapi.org/v2/top-headlines?country=us';
+            const headers = new Headers();
+            headers.append('Authorization', apiKey);
+
+            try {
+                const response = await fetch(url, { headers });
+          
+              if (!response.ok) {
+                throw new Error('Network response was not ok');
+              }
+          
+              const data = await response.json();
+              console.log(data);
+              const array = (data.articles).map((element)=>{
+                            var parent = document.querySelector('.parent');
+                           
+                            var childelem = document.createElement('div');
+                            childelem.className = 'child';
+                            parent.appendChild(childelem);
+                
+                            var data = document.createElement('div');
+                            data.className = 'data';
+                            childelem.appendChild(data);
+                            
+                            var image = document.createElement('img');
+                            image.className = 'image';
+                            image.src = element.urlToImage; 
+                            childelem.appendChild(image);
+                
+                            var title = document.createElement('h1');
+                            title.className ='title'
+                            title.textContent = element.title
+                            data.appendChild(title);
+                
+                            var content = document.createElement('p');
+                            content.className = 'content'
+                            content.textContent = element.content;
+                            data.appendChild(content);
+            
+                            // console.log(element)
+                        })
+            } catch (error) {
+              console.error('There was a problem with the fetch operation:', error);
+            }
+          }
+          
+          fetchNews();
+          document.querySelector('.child').style.display ='none';
     },[])
-
-    // window.onload = function() {
-       
-    // };
 
  
 
