@@ -100,4 +100,8 @@ backdrop-filter: blur(11.6px);
     margin-top: 2vh;
     font-size: 3vh;
   }
+  .nav{
+    height: 8vh;
+    
+  }
 }
