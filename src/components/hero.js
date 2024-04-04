@@ -68,7 +68,7 @@ function Hero(){
         <div>
             <div className='grandparent  w-[100vw] h-auto flex flex-col items-center justify-center  justify-center gap-[0vw] '>
                 <div className=' w-[90vw] mt-[1.5vw]'>
-                <h1 className='heading font-bold text-[2.5vw]' >Top-HeadLines</h1>
+                <h1 className=' font-bold text-[2.5vw] max-sm:text-[3vh] max-sm:mt-[2vh]' >Top-HeadLines</h1>
                 </div>
                 <div className='parent  1st_col w-auto h-auto flex-col gap-[1vw]'>
                
