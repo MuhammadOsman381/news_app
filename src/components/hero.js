@@ -1,172 +1,90 @@
 import React from 'react'
 import { useState,useEffect } from "react";
+import { getDatabase, ref, get ,set} from 'firebase/database';
+import {app} from './FireBase';
+
 
 function Hero(){
-    
-    const [datafetched,setDataFetched] = useState('');
-    // const [image,setImage] = useState(null);
-    // const [title,setTitle] = useState(null);
-    // const [content,setContent] = useState(null);
-    // const [indexno,setIndex] = useState(0);
-    // let API_KEY ='18c670ea70fe6b5a81213e702cccaf8b'
-    // let API_KEY = '6d60cc230fe5424cb955d5eafb128831'
-    // let API_URL = `https://newsapi.org/v2/everything?q=bitcoin&apiKey=${API_KEY}`
-    // console.log(API_URL)
    
-    // useEffect(()=>{
-
-    //     fetch(`https://newsapi.org/v2/everything?q=bitcoin&apiKey=${key.api}`)
-    //     .then(response => {
-    //         if (!response.ok) {
-    //           throw new Error('Network response was not ok');
-    //         }
-    //         return response.json();
-    //       })
-    //     .then(data=>{
-    //         setDataFetched(data)
-
-    //         const array = (data.articles).map((element)=>{
-    //             var parent = document.querySelector('.parent');
-               
-    //             var childelem = document.createElement('div');
-    //             childelem.className = 'child';
-    //             parent.appendChild(childelem);
-    
-    //             var data = document.createElement('div');
-    //             data.className = 'data';
-    //             childelem.appendChild(data);
-                
-    //             var image = document.createElement('img');
-    //             image.className = 'image';
-    //             image.src = element.urlToImage; 
-    //             childelem.appendChild(image);
-    
-    //             var title = document.createElement('h1');
-    //             title.className ='title'
-    //             title.textContent = element.title
-    //             data.appendChild(title);
-    
-    //             var content = document.createElement('p');
-    //             content.className = 'content'
-    //             content.textContent = element.content;
-    //             data.appendChild(content);
-
-    //             // console.log(element)
-    //         })
-    //         // datafetched.articles.forEach(function(element, index) {
-    //         //     var parent = document.querySelector('.parent');
-               
-    
-    //         //     var childelem = document.createElement('div');
-    //         //     childelem.className = 'child';
-    //         //     parent.appendChild(childelem);
-    
-    //         //     var data = document.createElement('div');
-    //         //     data.className = 'data';
-    //         //     childelem.appendChild(data);
-                
-    //         //     var image = document.createElement('img');
-    //         //     image.className = 'image';
-    //         //     image.src = element.urlToImage; 
-    //         //     childelem.appendChild(image);
-    
-    //         //     var title = document.createElement('h1');
-    //         //     title.className ='title'
-    //         //     title.textContent = element.title
-    //         //     data.appendChild(title);
-    
-    //         //     var content = document.createElement('p');
-    //         //     content.className = 'content'
-    //         //     content.textContent = element.content;
-    //         //     data.appendChild(content);
-    //         // })
-    //         console.log(datafetched);
-    //         // console.log(Data)
-    //         document.querySelector('.child').style.display ='none';
-            
-    //     })
-    //     .catch(error => 
-    //         console.error('Error fetching news data:', error
-    //         ));
-
-    // },[])
-    
-    const apiKey = '6d60cc230fe5424cb955d5eafb128831'
-    useEffect(()=>{
-        async function fetchNews() {
-            const url = 'https://newsapi.org/v2/top-headlines?country=us';
-            const headers = new Headers();
-            headers.append('Authorization', apiKey);
-
-            try {
-                const response = await fetch(url, { headers });
-          
-              if (!response.ok) {
+    const [fetcheddata,setFetchedData] = useState();
+    const [arraydata,setArrayData] = useState([ ]);
+    const [title,setTitle] = useState('');
+    const [img,setImg] =useState('');
+    const [desc,setDesc] =useState('');
+    // const apiKey = ''
+    async function fetchNews() {
+           
+            fetch('https://newsapi.org/v2/top-headlines?country=us&apiKey=6d60cc230fe5424cb955d5eafb128831')
+            .then(response => {
+                if (!response.ok) {
                 throw new Error('Network response was not ok');
-              }
-          
-              const data = await response.json();
-              console.log(data);
-              const array = (data.articles).map((element)=>{
-                            var parent = document.querySelector('.parent');
+                }
+                return response.json();
+            })
+            .then(data => {
+               
+                // console.log(data.articles)
+                (data.articles).forEach((article, index) => {
+                    set(ref(getDatabase(app), 'articles/' + index), article)
+                        .then(() => {
                            
-                            var childelem = document.createElement('div');
-                            childelem.className = 'child';
-                            parent.appendChild(childelem);
-                
-                            var data = document.createElement('div');
-                            data.className = 'data';
-                            childelem.appendChild(data);
-                            
-                            var image = document.createElement('img');
-                            image.className = 'image';
-                            image.src = element.urlToImage; 
-                            childelem.appendChild(image);
-                
-                            var title = document.createElement('h1');
-                            title.className ='title'
-                            title.textContent = element.title
-                            data.appendChild(title);
-                
-                            var content = document.createElement('p');
-                            content.className = 'content'
-                            content.textContent = element.content;
-                            data.appendChild(content);
-            
-                            // console.log(element)
+                          console.log(article)
                         })
-            } catch (error) {
-              console.error('There was a problem with the fetch operation:', error);
-            }
-          }
-          
-          fetchNews();
-          document.querySelector('.child').style.display ='none';
-    },[])
+                        .catch(error => {
+                            console.error('Error uploading data:', error);
+                        });
+                });
+            })
+            .catch(error => {
+                console.error('There was a problem with the fetch operation:', error);
+            });
 
- 
+
+          
+            } 
+            
+          
+        const fetchdata = () =>{
+            const db = getDatabase(app);
+            const refer = ref(db,'articles');
+    
+            get(refer).then((snapshot) => {
+              const array = Object.values(snapshot.val());
+             setArrayData(array);
+            //  console.log(snapshot.val())
+        });
+    }
+
+    useEffect(()=>{
+    fetchdata();
+    fetchNews();
+    console.log(arraydata);
+   
+        },[])
+
+
 
     return(
         <div>
             <div className='grandparent  w-[100vw] h-auto flex flex-col items-center justify-center  justify-center gap-[0vw] '>
                 <div className=' w-[90vw] mt-[1.5vw]'>
-                <h1 className='font-bold text-[2.5vw]'>BitCoin-News</h1>
+                <h1 className='heading font-bold text-[2.5vw]' >Top-HeadLines</h1>
                 </div>
-                <div className='parent 1st_col w-auto h-auto gap-[1vw]'>
-                
-                    <div className='child' id='child' >
-                        {/* <div className='con'> */}
-                        <img className='image' id='image' />
-                        <div className='data'>
+                <div className='parent  1st_col w-auto h-auto flex-col gap-[1vw]'>
+               
+                    {arraydata.map((item) => (
+                         <div className='child'>
+                          
+                            <img src={item.urlToImage} alt="" className='image'/>
+                     
+                            <div className='content'>
+                    <div  key={item} className='title'>   {item.title} </div>
 
-                            <h1 className='title'></h1>
-                        <p className='content'>
-                        </p>
-                        
-                        <span></span>
-                        </div>
-                    {/* </div> */}
+                    <div key={item} className='con'> {item.content}        </div>
                     </div>
+                    </div>
+                ))}
+               
                 </div>
             </div>
         </div>

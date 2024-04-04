@@ -14,24 +14,24 @@ body {
   width: 70vw;
   height: 20vw;
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
-  gap: 1vw;
+  gap: 2vw;
   padding: 2vw;
-  margin-top: 1.5vw;
-  box-shadow: 15px 15px 15px grey;
-  /* From https://css.glass */
-background: rgba(5, 4, 4, 0.24);
+  margin-top: 3vw;
+  box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.47);
+/* From https://css.glass */
+background: rgba(147, 142, 141, 0.15);
 border-radius: 10px;
 /* box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); */
-backdrop-filter: blur(11.9px);
--webkit-backdrop-filter: blur(11.9px);
+backdrop-filter: blur(11.6px);
+-webkit-backdrop-filter: blur(11.6px);
 }
 
 .image{
-  width: 22vw;
-  height: 35vh;
+  width: 24vw;
+  height: 30vh;
   border-radius: 5px;
   object-fit: fill;
 }
@@ -39,7 +39,7 @@ backdrop-filter: blur(11.9px);
 .data{
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: left;
   justify-content: center;
   height: 15vw;
   gap: 1vw;
@@ -47,12 +47,16 @@ backdrop-filter: blur(11.9px);
 }
 
 .content{
-  font-size: 1.2vw;
+  display: flex;
+  flex-direction: column;
+  gap: 1vw;
 }
 
 .con{
   display: flex;
   flex-direction: row;
+  font-size: 1.2vw;
+
 }
 
 @media (max-width: 600px) {
@@ -61,12 +65,12 @@ backdrop-filter: blur(11.9px);
   .child{
     height: auto;
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
     width: 80vw;
     padding: 3vh;
-    gap: 1vh;
+    gap: 3vh;
     box-shadow: 10px 10px 10px grey;
-    margin-top: 3vh;
+    margin-top: 4vh;
   }
   .image{
     width: 30vh;
@@ -77,14 +81,23 @@ backdrop-filter: blur(11.9px);
     width: 100vw;
   }
   .title{
-    font-size: 1.6vh;
+    font-size: 2vh;
   }
   .content{
-    font-size: 1.2vh;
+    /* font-size: 1.6vh; */
+    gap: 1vh;
   }
   .data{
     /* border: 1px solid black; */
     height: auto;
     width: 30vh;
+  }
+  .con{
+    font-size: 1.6vh;
+
+  }
+  .heading{
+    margin-top: 2vh;
+    font-size: 3vh;
   }
 }

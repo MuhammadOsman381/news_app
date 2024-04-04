@@ -1,4 +1,4 @@
-import logo from './icons/logo2.png';
+// import logo from './icons/logo2.png';
 
 function NavBar(){
     return(
