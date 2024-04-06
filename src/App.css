@@ -6,30 +6,39 @@ body {
 
 .title{
   font-weight: 770;
-  font-size: 1.4vw;
+  font-size: 16.5px;
+}
+
+.desc{
+  font-size: 90%;
 }
 
 .parent{
   
   display: grid;
-  grid-template-columns: auto auto auto;
-  /* border: 1px solid black; */
-  gap: 3vw;
-  width: auto;
+  grid-template-columns: 25.5% 25.5% 25.5%;
+  /* grid-template-columns: 25.5% 25.5% 25.5%; */
   /* align-items: center;
   justify-content: center; */
+  
+  gap: 8.3vw;
+  
+  /* align-items: center;
+  justify-content: center; */
+  /* width: 90%; */
+  /* height: ; */
 }
 
 .child{
   /* border: 2px solid black; */
-  width: 25vw;
-  height: auto;
+  width: 125%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 2vw;
-  padding: 2.5vw;
+  gap: 20px;
+  padding: 10%;
 
   box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.47);
 /* From https://css.glass */
@@ -41,7 +50,7 @@ backdrop-filter: blur(11.6px);
 }
 
 .image{
-  width: 20vw;
+  width: 23vw;
   height: 30vh;
   border-radius: 5px;
   object-fit: cover;
@@ -55,35 +64,46 @@ backdrop-filter: blur(11.6px);
   height: 15vw;
   gap: 1vw;
   width: auto;
+  
 }
 
 .content{
   display: flex;
   flex-direction: column;
   gap: 1vw;
+  width: 90%;
+  
 }
 
 .con{
   display: flex;
   flex-direction: row;
-  font-size: 1.2vw;
-  display: none;
+  font-size: 90px;
+  /* display: none; */
 
 }
 .btn{
-  /* border: 1px solid black; */
-  width: 8vw;
+  /*  */
+  width: 85px;
   /* padding: 3px; */
-  height: 7vh;
+  height: 40px;
   background-color: black;
   color: white;
   border-radius: 5px;
 }
-@media (max-width: 600px) {
+
+.nav{
+  height: 12vh;
+  padding: 3vh;
+}
+
+@media screen and (max-width: 600px) {
   
   .parent{
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
 
   .child{
@@ -111,10 +131,11 @@ backdrop-filter: blur(11.6px);
   }
   .content{
     /* font-size: 1.6vh; */
+    width: 100%;
     gap: 1vh;
   }
   .data{
-    /* border: 1px solid black; */
+    /*  */
     height: auto;
     width: 30vh;
   }
@@ -135,3 +156,60 @@ backdrop-filter: blur(11.6px);
     height: 5vh;
   }
 }
+
+/* 
+@media screen and (orientation: landscape)  {
+  .parent{
+    display: grid;
+    grid-template-columns: auto auto;
+  }
+
+  .child{
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 40vw;
+    padding: 4vw;
+    gap: 3vw;
+    box-shadow: 10px 10px 10px grey;
+   
+  }
+  .image{
+    width: 40vw;
+    height: 35vh;
+  }
+  .main{
+    height: 16vw;
+    width: 100vw;
+  }
+  .title{
+    font-size: 2vw;
+  }
+  .content{
+   
+    gap: 1.5vw;
+  }
+  .data{
+    
+    height: auto;
+    width: 30vh;
+  }
+  .con{
+    font-size: 1.6vh;
+
+  }
+  .heading{
+   
+    font-size: 5vw;
+  }
+  .nav{
+    height: 10vw;
+
+  }
+  .btn{
+    width: 11vw;
+    height: 8vh;
+  }
+} */

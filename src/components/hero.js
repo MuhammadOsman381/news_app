@@ -9,11 +9,11 @@ function Hero(){
 
     const [arraydata,setArrayData] = useState([ ]);
     const [loader,setLoader] = useState(true);
-
+    const [expanded, setExpanded] = useState(false);
 
     async function fetchNews() {
            
-            fetch('https://newsapi.org/v2/everything?q=tesla&from=2024-03-06&sortBy=publishedAt&apiKey=6d60cc230fe5424cb955d5eafb128831&pageSize=100')
+            fetch('https://newsapi.org/v2/everything?q=tesla&from=2024-03-06&sortBy=publishedAt&apiKey=6d60cc230fe5424cb955d5eafb128831&pageSize=99')
             .then(response => {
                 if (!response.ok) {
                 throw new Error('Network response was not ok');
@@ -55,7 +55,7 @@ function Hero(){
         });
     }
 
-            const [expanded, setExpanded] = useState(false);
+            
 
         const toggleExpanded = () => {
             setExpanded(!expanded);
@@ -65,7 +65,7 @@ function Hero(){
     useEffect(()=>{
     fetchdata();
     fetchNews();
-    console.log(arraydata);
+    // console.log(arraydata);
    
         },[])
 
@@ -73,11 +73,11 @@ function Hero(){
 
     return(
         <div>
-            <div className='grandparent  w-[100vw] h-auto flex flex-col items-center justify-center  justify-center gap-[0vw] '>
+            <div className='grandparent  w-auto h-auto flex flex-col items-center justify-center  justify-center gap-[0vw] '>
                 <div className=' w-auto h-auto p-4 '>
-                <h1 className=' w-[90vw] h-[10vh] font-bold text-[2.5vw] max-sm:text-[3vh] max-sm:mt-[0vh]  max-sm:h-[5vh]' >Top-HeadLines</h1>
+                <h1 className=' w-[90vw] h-[10vh] font-bold text-[2.2vw] max-sm:text-[3vh] max-sm:mt-[0vh]  max-sm:h-[5vh]' >Top-HeadLines</h1>
                 </div>
-                <div className='parent   w-auto h-auto '>
+                <div className='parent     w-[90vw] h-auto '>
                
                     {loader ?
                     (
@@ -91,8 +91,12 @@ function Hero(){
                             <div className='content'>
                     <div  key={item} className='title'>   {item.title} </div>
 
-                                    {expanded && <p key={item}>{item.content}</p>}
-                    <button className='btn' onClick={toggleExpanded}>{expanded ? 'Read Less' : 'Read More'}</button>
+                  
+                            <div className='desc' key={item.title}>{item.content}</div>
+                   
+                        {/* <button className='btn' onClick={toggleExpanded}>
+                            {expanded ? 'Read Less' : 'Read More'}
+                        </button> */}
                     </div>
                     </div>
                 ))}
