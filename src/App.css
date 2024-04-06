@@ -50,8 +50,8 @@ backdrop-filter: blur(11.6px);
 }
 
 .image{
-  width: 23vw;
-  height: 30vh;
+  width: 17rem;
+  height: 12rem;
   border-radius: 5px;
   object-fit: cover;
 }
@@ -93,9 +93,91 @@ backdrop-filter: blur(11.6px);
 }
 
 .nav{
-  height: 12vh;
-  padding: 3vh;
+  height: 4rem;
+  padding: 2%;
 }
+
+
+
+@media (max-width:900px)  {
+  .tp{
+   
+    width: 90%;
+    height: 4rem;
+  }
+  .tp h1{
+    font-size: 1.2rem;
+  }
+  .parent{
+    display: grid;
+    width: 100%;
+   
+    align-items: center;
+    justify-content: center;
+    grid-template-columns: 40% 40%;
+  }
+
+  .child{
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 4vw;
+    height: 100%;
+    gap: 3vw;
+    box-shadow: 10px 10px 10px grey;
+   
+  }
+  .image{
+    width: 100%;
+    height: 44%;
+  }
+  .main{
+    height: 16vw;
+    width: 100vw;
+  }
+  .title{
+    font-size: 1.1rem;
+  }
+  .content{
+   
+    gap: 0.5rem;
+  }
+  .data{
+    
+    height: auto;
+    width: 30vh;
+    
+  }
+  .con{
+    font-size: 1.6vh;
+   
+  }
+  .content{
+    width: 100%;
+   
+  }
+  .heading{
+   
+    font-size: 5vw;
+  }
+  .nav{
+    height: 10vw;
+
+  }
+  .btn{
+    width: 11vw;
+    height: 8vh;
+  }
+  .nav{
+    height: 4rem;
+    padding: 3%;
+   
+  }
+} 
+
 
 @media screen and (max-width: 600px) {
   
@@ -157,59 +239,3 @@ backdrop-filter: blur(11.6px);
   }
 }
 
-/* 
-@media screen and (orientation: landscape)  {
-  .parent{
-    display: grid;
-    grid-template-columns: auto auto;
-  }
-
-  .child{
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 40vw;
-    padding: 4vw;
-    gap: 3vw;
-    box-shadow: 10px 10px 10px grey;
-   
-  }
-  .image{
-    width: 40vw;
-    height: 35vh;
-  }
-  .main{
-    height: 16vw;
-    width: 100vw;
-  }
-  .title{
-    font-size: 2vw;
-  }
-  .content{
-   
-    gap: 1.5vw;
-  }
-  .data{
-    
-    height: auto;
-    width: 30vh;
-  }
-  .con{
-    font-size: 1.6vh;
-
-  }
-  .heading{
-   
-    font-size: 5vw;
-  }
-  .nav{
-    height: 10vw;
-
-  }
-  .btn{
-    width: 11vw;
-    height: 8vh;
-  }
-} */

@@ -74,8 +74,8 @@ function Hero(){
     return(
         <div>
             <div className='grandparent  w-auto h-auto flex flex-col items-center justify-center  justify-center gap-[0vw] '>
-                <div className=' w-auto h-auto p-4 '>
-                <h1 className=' w-[90vw] h-[10vh] font-bold text-[2.2vw] max-sm:text-[3vh] max-sm:mt-[0vh]  max-sm:h-[5vh]' >Top-HeadLines</h1>
+                <div className='tp w-auto h-auto p-4 '>
+                <h1 className=' w-[90vw] h-[10vh] font-bold text-[2vw] max-sm:text-[3vh] max-sm:mt-[0vh]  max-sm:h-[5vh]' >Top-HeadLines</h1>
                 </div>
                 <div className='parent     w-[90vw] h-auto '>
                
