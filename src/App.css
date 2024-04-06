@@ -5,21 +5,32 @@ body {
 }
 
 .title{
-  font-weight: 700;
-  font-size: 1.7vw;
+  font-weight: 770;
+  font-size: 1.4vw;
+}
+
+.parent{
+  
+  display: grid;
+  grid-template-columns: auto auto auto;
+  /* border: 1px solid black; */
+  gap: 3vw;
+  width: auto;
+  /* align-items: center;
+  justify-content: center; */
 }
 
 .child{
   /* border: 2px solid black; */
-  width: 70vw;
-  height: 20vw;
+  width: 25vw;
+  height: auto;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 2vw;
-  padding: 2vw;
-  margin-top: 3vw;
+  padding: 2.5vw;
+
   box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.47);
 /* From https://css.glass */
 background: rgba(147, 142, 141, 0.15);
@@ -30,10 +41,10 @@ backdrop-filter: blur(11.6px);
 }
 
 .image{
-  width: 24vw;
+  width: 20vw;
   height: 30vh;
   border-radius: 5px;
-  object-fit: fill;
+  object-fit: cover;
 }
 
 .data{
@@ -56,24 +67,39 @@ backdrop-filter: blur(11.6px);
   display: flex;
   flex-direction: row;
   font-size: 1.2vw;
+  display: none;
 
 }
-
+.btn{
+  /* border: 1px solid black; */
+  width: 8vw;
+  /* padding: 3px; */
+  height: 7vh;
+  background-color: black;
+  color: white;
+  border-radius: 5px;
+}
 @media (max-width: 600px) {
   
+  .parent{
+    display: flex;
+    flex-direction: column;
+  }
 
   .child{
     height: auto;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
     width: 80vw;
-    padding: 3vh;
+    padding: 4vh;
     gap: 3vh;
     box-shadow: 10px 10px 10px grey;
-    margin-top: 4vh;
+    /* margin-top: 4vh; */
   }
   .image{
-    width: 30vh;
+    width: 35vh;
     height: 20vh;
   }
   .main{
@@ -103,5 +129,9 @@ backdrop-filter: blur(11.6px);
   .nav{
     height: 7vh;
 
+  }
+  .btn{
+    width: 11.5vh;
+    height: 5vh;
   }
 }

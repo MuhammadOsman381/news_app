@@ -2,19 +2,18 @@ import React from 'react'
 import { useState,useEffect } from "react";
 import { getDatabase, ref, get ,set} from 'firebase/database';
 import {app} from './FireBase';
-
+import Loader from './loader';
 
 function Hero(){
    
-    const [fetcheddata,setFetchedData] = useState();
+
     const [arraydata,setArrayData] = useState([ ]);
-    const [title,setTitle] = useState('');
-    const [img,setImg] =useState('');
-    const [desc,setDesc] =useState('');
-    // const apiKey = ''
+    const [loader,setLoader] = useState(true);
+
+
     async function fetchNews() {
            
-            fetch('https://newsapi.org/v2/top-headlines?country=us&apiKey=6d60cc230fe5424cb955d5eafb128831')
+            fetch('https://newsapi.org/v2/everything?q=tesla&from=2024-03-06&sortBy=publishedAt&apiKey=6d60cc230fe5424cb955d5eafb128831&pageSize=100')
             .then(response => {
                 if (!response.ok) {
                 throw new Error('Network response was not ok');
@@ -50,10 +49,18 @@ function Hero(){
     
             get(refer).then((snapshot) => {
               const array = Object.values(snapshot.val());
+              setLoader(false);
              setArrayData(array);
             //  console.log(snapshot.val())
         });
     }
+
+            const [expanded, setExpanded] = useState(false);
+
+        const toggleExpanded = () => {
+            setExpanded(!expanded);
+        };
+    
 
     useEffect(()=>{
     fetchdata();
@@ -67,12 +74,16 @@ function Hero(){
     return(
         <div>
             <div className='grandparent  w-[100vw] h-auto flex flex-col items-center justify-center  justify-center gap-[0vw] '>
-                <div className=' w-[90vw] mt-[1.5vw]'>
-                <h1 className=' font-bold text-[2.5vw] max-sm:text-[3vh] max-sm:mt-[2vh]' >Top-HeadLines</h1>
+                <div className=' w-auto h-auto p-4 '>
+                <h1 className=' w-[90vw] h-[10vh] font-bold text-[2.5vw] max-sm:text-[3vh] max-sm:mt-[0vh]  max-sm:h-[5vh]' >Top-HeadLines</h1>
                 </div>
-                <div className='parent  1st_col w-auto h-auto flex-col gap-[1vw]'>
+                <div className='parent   w-auto h-auto '>
                
-                    {arraydata.map((item) => (
+                    {loader ?
+                    (
+                        <Loader/>
+                      ) :
+                    arraydata.map((item) => (
                          <div className='child'>
                           
                             <img src={item.urlToImage} alt="" className='image'/>
@@ -80,7 +91,8 @@ function Hero(){
                             <div className='content'>
                     <div  key={item} className='title'>   {item.title} </div>
 
-                    <div key={item} className='con'> {item.content}        </div>
+                                    {expanded && <p key={item}>{item.content}</p>}
+                    <button className='btn' onClick={toggleExpanded}>{expanded ? 'Read Less' : 'Read More'}</button>
                     </div>
                     </div>
                 ))}
