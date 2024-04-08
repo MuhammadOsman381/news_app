@@ -6,14 +6,14 @@ import Loader from './loader';
 
 function Hero(){
    
-
-    const [arraydata,setArrayData] = useState([ ]);
+    const [fetchednews,setFetchedNews] = useState([]);
+    const [arraydata,setArrayData] = useState([]);
     const [loader,setLoader] = useState(true);
     const [expanded, setExpanded] = useState(false);
 
     async function fetchNews() {
            
-            fetch('https://newsapi.org/v2/everything?q=tesla&from=2024-03-06&sortBy=publishedAt&apiKey=6d60cc230fe5424cb955d5eafb128831&pageSize=99')
+            fetch('https://newsapi.org/v2/everything?q=tesla&from=2024-03-08&sortBy=publishedAt&apiKey=6d60cc230fe5424cb955d5eafb128831')
             .then(response => {
                 if (!response.ok) {
                 throw new Error('Network response was not ok');
@@ -22,8 +22,8 @@ function Hero(){
             })
             .then(data => {
                
-                // console.log(data.articles)
-                (data.articles).forEach((article, index) => {
+                setFetchedNews(data.articles)
+                data.articles.forEach((article, index) => {
                     set(ref(getDatabase(app), 'articles/' + index), article)
                         .then(() => {
                            
@@ -62,12 +62,13 @@ function Hero(){
         };
     
 
-    useEffect(()=>{
-    fetchdata();
+    useEffect(()=>{  
     fetchNews();
-    // console.log(arraydata);
-   
-        },[])
+        },[fetchednews])
+
+    useEffect(()=>{
+        fetchdata();
+    },[arraydata])
 
 
 
@@ -93,10 +94,7 @@ function Hero(){
 
                   
                             <div className='desc' key={item.title}>{item.content}</div>
-                   
-                        {/* <button className='btn' onClick={toggleExpanded}>
-                            {expanded ? 'Read Less' : 'Read More'}
-                        </button> */}
+                
                     </div>
                     </div>
                 ))}
