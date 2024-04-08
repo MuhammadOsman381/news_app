@@ -3,7 +3,7 @@ import { useState,useEffect } from "react";
 import { getDatabase, ref, get ,set} from 'firebase/database';
 import {app} from './FireBase';
 import Loader from './loader';
-
+import axios from 'axios';
 function Hero(){
    
     const [fetchednews,setFetchedNews] = useState([]);
@@ -12,33 +12,25 @@ function Hero(){
     const [expanded, setExpanded] = useState(false);
 
     async function fetchNews() {
-           
-            fetch('https://newsapi.org/v2/everything?q=tesla&from=2024-03-08&sortBy=publishedAt&apiKey=6d60cc230fe5424cb955d5eafb128831')
-            .then(response => {
-                if (!response.ok) {
-                throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(data => {
-               
-                setFetchedNews(data.articles)
-                data.articles.forEach((article, index) => {
-                    set(ref(getDatabase(app), 'articles/' + index), article)
-                        .then(() => {
-                           
-                          console.log(article)
-                        })
-                        .catch(error => {
-                            console.error('Error uploading data:', error);
-                        });
+  
+            axios({
+                method: 'get',
+                url: 'https://newsapi.org/v2/everything?q=apple&from=2024-04-07&to=2024-04-07&sortBy=popularity&apiKey=6d60cc230fe5424cb955d5eafb128831',
+                // responseType: 'stream'
+              })
+                .then(function (response) {
+                //   console.log(response.data.articles);
+                  setFetchedNews(response.data.articles)
+                      response.data.articles.forEach((article, index) => {
+                          set(ref(getDatabase(app), 'articles/' + index), article)
+                              .then(() => {
+                                    console.log(article);
+                              })
+                              .catch(error => {
+                                  console.error('Error uploading data:', error);
+                              });
+                      });
                 });
-            })
-            .catch(error => {
-                console.error('There was a problem with the fetch operation:', error);
-            });
-
-
           
             } 
             
@@ -57,9 +49,6 @@ function Hero(){
 
             
 
-        const toggleExpanded = () => {
-            setExpanded(!expanded);
-        };
     
 
     useEffect(()=>{  
