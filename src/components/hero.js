@@ -15,8 +15,7 @@ function Hero(){
   
             axios({
                 method: 'get',
-                url: 'https://newsapi.org/v2/everything?q=apple&from=2024-04-07&to=2024-04-07&sortBy=popularity&apiKey=6d60cc230fe5424cb955d5eafb128831',
-                // responseType: 'stream'
+                url: 'https://newsapi.org/v2/everything?q=cricket&from=2024-04-07&to=2024-04-07&sortBy=popularity&apiKey=6d60cc230fe5424cb955d5eafb128831',
               })
                 .then(function (response) {
                 //   console.log(response.data.articles);
