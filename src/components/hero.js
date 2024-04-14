@@ -9,21 +9,21 @@ function Hero(){
     const [fetchednews,setFetchedNews] = useState([]);
     const [arraydata,setArrayData] = useState([]);
     const [loader,setLoader] = useState(true);
-    const [expanded, setExpanded] = useState(false);
+    // const [expanded, setExpanded] = useState(false);
 
     async function fetchNews() {
   
             axios({
                 method: 'get',
-                url: 'https://newsapi.org/v2/everything?q=cricket&from=2024-04-07&to=2024-04-07&sortBy=popularity&apiKey=6d60cc230fe5424cb955d5eafb128831',
+                url: 'https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=6d60cc230fe5424cb955d5eafb128831',
               })
                 .then(function (response) {
-                //   console.log(response.data.articles);
+           
                   setFetchedNews(response.data.articles)
                       response.data.articles.forEach((article, index) => {
                           set(ref(getDatabase(app), 'articles/' + index), article)
                               .then(() => {
-                                    console.log(article);
+                                    console.log('hello');
                               })
                               .catch(error => {
                                   console.error('Error uploading data:', error);
@@ -31,7 +31,7 @@ function Hero(){
                       });
                 });
           
-            } 
+    } 
             
           
         const fetchdata = () =>{
@@ -52,11 +52,11 @@ function Hero(){
 
     useEffect(()=>{  
     fetchNews();
-        },[fetchednews])
+        },[])
 
     useEffect(()=>{
         fetchdata();
-    },[arraydata])
+    },[])
 
 
 
